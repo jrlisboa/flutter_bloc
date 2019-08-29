@@ -4,9 +4,15 @@ class DetailPage extends StatelessWidget {
 	final title;
 	final posterPath;
 	final releaseDate;
+	final overview;
 	final id;
-	final back;
-	DetailPage(this.title, this.posterPath, this.releaseDate, this.id, this.back);
+	DetailPage(
+		this.title,
+		this.posterPath,
+		this.releaseDate,
+		this.overview,
+		this.id,
+	);
 	Widget build(BuildContext context) {
 		print('o id e $id lancado em $releaseDate');
 		if (title == null) {
@@ -14,25 +20,51 @@ class DetailPage extends StatelessWidget {
 		}
 		return Scaffold(
 			appBar: AppBar(
-				actions: <Widget>[
-					IconButton(
-						icon: Icon(Icons.arrow_back),
-						onPressed: () {
-							back();
-						},
-					)
-				],
 				title: Text(title),
 			),
-			body: Center(
-				child: Hero(
-					tag: id,
-					child: Image.network(
-						'https://image.tmdb.org/t/p/w185${posterPath}',
-						fit: BoxFit.cover,
-					),
+			body: Column(
+					children: <Widget>[
+						Center(
+							child: Hero(
+								tag: id,
+								child: Image.network(
+									'https://image.tmdb.org/t/p/w185${posterPath}',
+									fit: BoxFit.cover,
+								),
+							),
+						),
+						Padding(
+							padding: EdgeInsets.all(20),
+							child: Text(
+								title,
+								style: TextStyle(
+									fontSize: 30,
+									color: Colors.white,
+								),
+							),
+						),
+						Padding(
+							padding: EdgeInsets.all(20),
+							child: Text(
+								releaseDate,
+								style: TextStyle(
+									fontSize: 20,
+									color: Colors.white,
+								),
+							),
+						),
+						Padding(
+							padding: EdgeInsets.all(20),
+							child: Text(
+								overview,
+								style: TextStyle(
+									fontSize: 18,
+									color: Colors.white,
+								),
+							),
+						),
+					],
 				),
-			),
 		);
 	}
 }

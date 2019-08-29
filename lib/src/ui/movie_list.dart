@@ -42,9 +42,11 @@ class MovieList extends StatelessWidget {
 								onTap: () {
 								print('tapped');
 								callDetail(
+									context,
 									snapshot.data.results[index].title,
 									snapshot.data.results[index].posterPath,
 									snapshot.data.results[index].releaseDate,
+									snapshot.data.results[index].overview,
 									snapshot.data.results[index].id,
 								);
 							},
